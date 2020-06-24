@@ -1,4 +1,4 @@
-1. zasady gry
+1. Zasady gry
     - Jeśli gracz rzuci kostkami tak, że na
       obu wypadnie takie samo zwierzę, to dostaje to zwierzę ze stada głównego. Gdy gracz ma
       już jakieś zwierzęta, to po rzucie otrzymuje ze stada tyle zwierząt wyrzuconego
@@ -7,3 +7,5 @@
       z głównym stadem
     - Jeśli gracz wyrzuci lisa, to traci na rzecz stada wszystkie posiadane króliki, oprócz jednego. Jeśli wyrzuci wilka, traci wszystkie posiadane zwierzęta, z wyjątkiem konia, królików
       i małego psa, (jeśli je ma)
+
+![Screenshot](1.png)
