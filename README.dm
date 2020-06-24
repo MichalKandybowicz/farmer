@@ -8,4 +8,4 @@
     - Jeśli gracz wyrzuci lisa, to traci na rzecz stada wszystkie posiadane króliki, oprócz jednego. Jeśli wyrzuci wilka, traci wszystkie posiadane zwierzęta, z wyjątkiem konia, królików
       i małego psa, (jeśli je ma)
 
-![Screenshot](1.png)
+![1](1.png)
