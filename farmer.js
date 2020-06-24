@@ -5,7 +5,6 @@ const dice2 = [
     ["bear", "img/bear.png"],
     ["bear", "img/bear.png"],
     ["elephants", "img/elephants.png"],
-    ["elephants", "img/elephants.png"],
     ["giraffe","img/giraffe.png"],
     ["wolf","img/wolf.png"],
 ];
@@ -13,45 +12,47 @@ const dice1 = [
     ["rabbit", "img/rabbit.png"],
     ["rabbit", "img/rabbit.png"],
     ["rabbit", "img/rabbit.png"],
+    ["rabbit", "img/rabbit.png"],
+    ["rabbit", "img/rabbit.png"],
     ["bear", "img/bear.png"],
-    ["bear", "img/bear.png"],
-    ["elephants", "img/elephants.png"],
     ["elephants", "img/elephants.png"],
 ];
 
 const troop = {
-    "rabbit": 60,
-    "bear": 32,
-    "elephants": 30,
-    "giraffe": 12,
+    "rabbit": 10,
+    "bear": 8,
+    "elephants": 6,
+    "giraffe": 4,
 }
 
 const diceButton = document.getElementById('roll-dice');
-diceButton.onclick = eventHandler;
+diceButton.onclick = dice;
 
-function eventHandler() {
+const exchangeButton_rabbit = document.getElementById('rabbit-to-bear');
+exchangeButton_rabbit.onclick = rabbitToBear;
+
+function rabbitToBear(){
+    // const elToDelete = document.getElementsByClassName(".rabbit")
+    // elToDelete.splice(0, 6)
+    addingAnimal("bear")
+
+}
+
+function dice() {
     const rNum1 = Math.floor(Math.random() * dice1.length);
     const rNum2 = Math.floor(Math.random() * dice2.length);
     document.getElementById("dice1").src = dice1[rNum1][1];
     document.getElementById("dice2").src = dice2[rNum2][1];
 
-
-
     if(dice1[rNum1][0] ==="wolf" || "wolf" === dice2[rNum2][0]){ // if wolf
-        console.log("wilk!")
-
-        const rabbits = document.getElementsByClassName("rabbit").length;
-        const bears = document.getElementsByClassName("bear").length;
-        const elephants = document.getElementsByClassName("elephants").length;
-        const giraffe = document.getElementsByClassName("giraffe").length;
-
-        
-
-        console.log("stado gracza",rabbits, bears, elephants,giraffe)
+        for(const key in troop) {
+            const animalToDelete = document.querySelectorAll("."+key);
+            troop[key] =troop[key] + animalToDelete.length;
+        }
 
         const elToDelete = document.querySelectorAll(".animal");
         for (const el of elToDelete) {
-            el.remove(); //usuwamy tylko z HTML
+            el.remove();
         }
     }
 
@@ -68,23 +69,35 @@ function eventHandler() {
 
 
 function addingAnimals(animal, x){
-    console.log(troop[animal])
     const howMany = document.querySelectorAll("."+animal).length
     const howManyAdd = Math.floor((howMany + x )/2)
     troop[animal] = troop[animal] - howManyAdd
 
-    if (troop[animal] >= 0){
-        for (let i = 0; i < howManyAdd; i++) {
-            const el = document.createElement("img");
-            el.src = "img/"+animal+".png";
-            el.className = animal;
-            el.classList.add("animal");
 
-            const div = document.getElementById(animal);
-            div.appendChild(el);
+    if (troop[animal] >= 0){ //
+        for (let i = 0; i < howManyAdd; i++) {
+            addingAnimal(animal)
         }
     }
-    else troop[animal] = 0
+    if (troop[animal] < 0){
+        for (let i = 0; i < ((howManyAdd - troop[animal])*-1); i++) {
+        addingAnimal(animal)
+        }
+    }
+    if(troop[animal] < 0){
+        troop[animal] = 0
+    }
 
+}
+
+function addingAnimal(animal){
+    const el = document.createElement("img");
+    el.src = "img/"+animal+".png";
+    el.className = animal;
+    el.classList.add("animal");
+    troop[animal] =- 1
+
+    const div = document.getElementById(animal);
+    div.appendChild(el);
 }
 
